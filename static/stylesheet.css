@@ -148,3 +148,24 @@ h1 {
     font-size: 80px;
     color: #A9A9A9;
 }
+
+/* Nodes */
+rect {
+    fill: transparent !important;
+    stroke: #A9A9A9 !important;
+    stroke-width: 1px !important;
+}
+foreignObject {
+    text-align: center;
+}
+
+/* Connections */
+path {
+    stroke: #A9A9A9 !important;
+    stroke-width: 1px !important;
+}
+
+/* Connection Label */
+.edgeLabel {
+    background-color: white !important;
+}

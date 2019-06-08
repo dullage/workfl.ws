@@ -1,12 +1,12 @@
-mermaid.mermaidAPI.initialize({
-    startOnLoad: false
-});
-
 var oldInputVal = "";
 var typingTimer;
 var doneTypingInterval = 1000;
 
 $(document).ready(function () {
+    mermaid.mermaidAPI.initialize({
+        startOnLoad: false
+    });
+
     $("#input").on("change keyup paste", inputChangeCheck);
     $("#help-button").click(toggleHelpModal)
     $("#help-modal").click(toggleHelpModal)
