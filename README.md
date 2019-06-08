@@ -1,6 +1,6 @@
-# workfl.ws
-
 ![Release](https://img.shields.io/badge/release-alpha-%23028CC3.svg)
+
+# workfl.ws
 
 A web editor for [workfl](https://github.com/Dullage/workfl) (a lightweight markup language for simple workflow diagrams).
 
