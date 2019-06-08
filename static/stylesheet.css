@@ -1,0 +1,78 @@
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+    color: #222222;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 20px 20px;
+}
+
+#header {
+    flex: 0 1 auto;
+    display: flex;
+}
+
+#header h1 {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 100;
+    font-size: 80px;
+    line-height: 1.1em;
+}
+@keyframes blink {
+    50% {opacity: 0;}
+}
+.cursor {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 100;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: step-start;
+}
+
+#ui {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#input {
+    padding: 20px;
+    flex: 0 0 500px;
+    resize: none;
+    border-color: #A9A9A9;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 1.5em;
+}
+#input:focus {
+    outline: none;
+}
+
+.gutter {
+    flex: 0 0 20px;
+}
+
+#flow {
+    padding: 20px;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #A9A9A9;
+    border-radius: 6px;
+}
+
+#loading-spinner {
+    font-size: 80px;
+    color: #A9A9A9;
+}

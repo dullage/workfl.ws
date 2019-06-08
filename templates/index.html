@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:100&display=swap">
+  <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
+  <script src="{{ url_for('static', filename='javascript.js') }}"></script>
+
+  {% include "custom-headers.html" ignore missing %}
+
+</head>
+
+<body>
+
+  <div id="header">
+    <h1>workfl.ws<span class="cursor">_</span></h1>
+  </div>
+
+  <div id="ui">
+    <textarea id="input"></textarea>
+    <div class="gutter"></div>
+    <div id="flow">
+      <span id="loading-spinner" class="mdi mdi-loading mdi-spin" style="display: none"></span>
+      <div id="flow-svg"></div>
+    </div>
+  </div>
+
+</body>
+
+</html>
