@@ -4,12 +4,33 @@
 
 <head>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:100&display=swap">
-  <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+  <link rel="manifest" href="/static/site.webmanifest">
+  <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#028cc3">
+  <link rel="shortcut icon" href="/static/favicon.ico">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="msapplication-config" content="/static/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}"/>
+
+  <!-- https://fonts.google.com/ -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:100&display=swap"/>
+
+  <!-- https://materialdesignicons.com/ -->
+  <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css"/>
+
+  <!-- https://github.com/Grsmto/simplebar -->
+  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+
+  <!-- https://mermaidjs.github.io/ -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
   <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
   <script src="{{ url_for('static', filename='javascript.js') }}"></script>
 
@@ -19,19 +40,42 @@
 
 <body>
 
+  <!-- Alpha Label -->
   <div id="alpha-label">ALPHA</div>
 
+  <!-- Help Modal -->
+  <div id="help-modal" {% if not show_help %}style="display: none"{% endif %}>
+    <div id="help-modal-content" class="border" data-simplebar>
+      {% include "help.html" %}
+    </div>
+  </div>
+
+  <!-- Main Header -->
   <div id="header">
     <h1>workfl.ws<span class="cursor">_</span></h1>
   </div>
 
   <div id="ui">
-    <textarea id="input"></textarea>
+  
+    <!-- Left Panel -->
+    <div id="left-panel" class="border">
+      <textarea id="input"></textarea>
+
+      <div id="buttons">
+        <a href="#" id="help-button"><span class="mdi mdi-help-circle-outline"></span></a>
+        <!-- <a href="#"><span class="mdi mdi-share-variant"></span></a> -->
+        <a href="https://github.com/Dullage/workfl.ws"><span class="mdi mdi-github-circle"></span></a>
+      </div>
+    </div>
+
     <div class="gutter"></div>
-    <div id="flow">
+
+    <!-- Right Panel -->
+    <div id="flow" class="border">
       <span id="loading-spinner" class="mdi mdi-loading mdi-spin" style="display: none"></span>
       <div id="flow-svg"></div>
     </div>
+
   </div>
 
 </body>

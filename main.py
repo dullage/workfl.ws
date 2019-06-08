@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+
 import workfl
 
 app = Flask(__name__)
@@ -6,7 +7,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    show_help = request.args.get("help")
+    return render_template("index.html", show_help=show_help)
 
 
 @app.route("/render", methods=["POST"])

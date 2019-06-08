@@ -8,6 +8,8 @@ var doneTypingInterval = 1000;
 
 $(document).ready(function () {
     $("#input").on("change keyup paste", inputChangeCheck);
+    $("#help-button").click(toggleHelpModal)
+    $("#help-modal").click(toggleHelpModal)
 })
 
 function inputChangeCheck() {
@@ -51,4 +53,8 @@ function renderFlow() {
         mermaid.mermaidAPI.render(needsUniqueId, mermaidMl, insertSvg);
         $("#flow-svg").show()
     })
+}
+
+function toggleHelpModal() {
+    $("#help-modal").toggle()
 }

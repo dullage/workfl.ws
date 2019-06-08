@@ -6,13 +6,15 @@ A web editor for [workfl](https://github.com/Dullage/workfl) (a lightweight mark
 
 Link: <https://workfl.ws>
 
-The editor uses [workfl](https://github.com/Dullage/workfl) to convert the user input to [mermaid](https://mermaidjs.github.io/) syntax which is then rendered into a diagram SVG using the mermaid api.
+The editor uses [workfl](https://github.com/Dullage/workfl) to convert the text input to [mermaid](https://mermaidjs.github.io/) syntax which is then rendered into a diagram SVG using the mermaid api.
 
 ## To Do
 
-* Full syntax guide.
+* Add diagrams to help modal.
 * Onboarding.
 * Diagram Styling. Keep light and simple to match UI.
-* Scrollbar styling (for long input).
+* Scrollbar styling (for long input). This is done on the help modal using [simplebar](https://github.com/Grsmto/simplebar) but this is incompatible with textarea.
 * Handle large workflows (scrolling / panning?).
 * Saving. Can the markup be stored in the URL similar to [itty.bitty.site](http://link.dullage.com/21a98)?
+* workfl allows for node and connection descriptions. A mermaid callback may be able show these descriptions in a popup.
+* Syntax highlighting.
