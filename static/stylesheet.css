@@ -16,9 +16,20 @@ body {
     padding: 10px 20px 20px 20px;
 }
 
+#alpha-label {
+    position: fixed;
+    top: 10px;
+    right: 0;
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: #028CC3;
+    color: white;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
 #header {
     flex: 0 1 auto;
-    display: flex;
 }
 
 #header h1 {
