@@ -35,7 +35,7 @@ var inputChangeCheck = (function () {
             return;  // Check to prevent multiple simultaneous triggers
         }
         else {
-            onInputChange()
+            onInputChange();
         };
 
         oldInputVal = currentInputVal;
@@ -70,7 +70,7 @@ function requestMermaid() {
 
 function renderMermaid() {
     var $mermaid = $("#mermaid");
-    var $loadingSpinner = $("#loading-spinner")
+    var $loadingSpinner = $("#loading-spinner");
     var $rightPanel = $("#right-panel");
     var uniqueId = "render" + (Math.floor(Math.random() * 10000)).toString();
     var mermaidMl = $mermaid.text();
@@ -89,9 +89,9 @@ function renderMermaid() {
 };
 
 function fitSvg() {
-    var svgWidth, svgHeight, rightPanelWidth, rightPanelHeight, panZoom
-    var $rightPanel = $("#right-panel")
-    var $svg = $("svg")
+    var svgWidth, svgHeight, rightPanelWidth, rightPanelHeight;
+    var $rightPanel = $("#right-panel");
+    var $svg = $("svg");
 
     // Get the full size of the SVG before hiding it.
     svgWidth = $svg.width();
@@ -100,13 +100,13 @@ function fitSvg() {
     $svg.hide();
 
     // Get the natural size of the right panel after the SVG is hidden.
-    rightPanelWidth = $rightPanel.width()
-    rightPanelHeight = $rightPanel.height()
+    rightPanelWidth = $rightPanel.width();
+    rightPanelHeight = $rightPanel.height();
 
     // Size the SVG according to the available space.
-    $svg.width(rightPanelWidth)
-    $svg.height(rightPanelHeight)
-    $svg.css({ "max-width": "none" })
+    $svg.width(rightPanelWidth);
+    $svg.height(rightPanelHeight);
+    $svg.css({ "max-width": "none" });
 
     // Show the SVG and enable panning and zooming.
     $svg.show();
@@ -118,12 +118,12 @@ function fitSvg() {
         heightDecimal = 1 / (rightPanelHeight / svgHeight);
 
         if (widthDecimal > heightDecimal) {
-            panZoom.setMinZoom(widthDecimal)
-            panZoom.zoom(widthDecimal)
+            panZoom.setMinZoom(widthDecimal);
+            panZoom.zoom(widthDecimal);
         }
         else {
-            panZoom.setMinZoom(heightDecimal)
-            panZoom.zoom(heightDecimal)
+            panZoom.setMinZoom(heightDecimal);
+            panZoom.zoom(heightDecimal);
         }
     }
     else {
@@ -131,22 +131,21 @@ function fitSvg() {
     }
 
     panZoom.setZoomScaleSensitivity(0.4);
-    console.log("Fit")
 }
 
 function toggleDirection() {
-    var $svg = $("svg")
+    var $svg = $("svg");
     var $directionButton = $("#direction-button");
 
     $svg.remove();
 
     if (workflWs.direction == "TB") {
         workflWs.direction = "LR";
-        $directionButton.css({ "transform": "rotate(-90deg)" })
+        $directionButton.css({ "transform": "rotate(-90deg)" });
     }
     else {
         workflWs.direction = "TB";
-        $directionButton.css({ "transform": "rotate(0deg)" })
+        $directionButton.css({ "transform": "rotate(0deg)" });
     }
 
     // TODO: Do this locally rather than requesting from the server.
