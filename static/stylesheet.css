@@ -123,25 +123,36 @@ h1 {
     flex: 0 0 20px;
 }
 
-#buttons {
+.buttons {
     padding: 6px 10px;
     text-align: right;
 }
 
-#buttons a {
+.buttons a {
     font-size: 22px;
 }
 
-#buttons a span {
+.buttons a span {
     color: rgb(122, 122, 122);
 }
 
-#flow {
+#right-panel .buttons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#direction-button {
+    display: inline-block;
+    transition-duration: 0.6s;
+}
+
+#right-panel {
     flex: 1 1 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    position: relative;
 }
 
 #loading-spinner {
@@ -150,22 +161,22 @@ h1 {
 }
 
 /* Nodes */
-rect {
+#right-panel rect {
     fill: transparent !important;
     stroke: #A9A9A9 !important;
     stroke-width: 1px !important;
 }
-foreignObject {
+#right-panel foreignObject {
     text-align: center;
 }
 
 /* Connections */
-path {
+#right-panel path {
     stroke: #A9A9A9 !important;
     stroke-width: 1px !important;
 }
 
 /* Connection Label */
-.edgeLabel {
+#right-panel .edgeLabel {
     background-color: white !important;
 }

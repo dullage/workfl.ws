@@ -14,5 +14,7 @@ def index():
 @app.route("/render", methods=["POST"])
 def render():
     markup = request.form["input"]
-    mermaid = workfl.ws(markup).to_mermaid()
+    direction = request.form.get("direction", "TB")
+
+    mermaid = workfl.ws(markup).to_mermaid(direction=direction)
     return mermaid

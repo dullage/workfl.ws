@@ -34,6 +34,9 @@
   <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
   <script src="{{ url_for('static', filename='javascript.js') }}"></script>
 
+  <!-- https://github.com/ariutta/svg-pan-zoom -->
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.0/dist/svg-pan-zoom.min.js"></script>
+
   {% include "custom-headers.html" ignore missing %}
 
 </head>
@@ -61,19 +64,22 @@
     <div id="left-panel" class="border">
       <textarea id="input">{% include "default-workflow.workfl" %}</textarea>
 
-      <div id="buttons">
-        <a href="#" id="help-button"><span class="mdi mdi-help-circle-outline"></span></a>
+      <div id="left-panel-buttons" class="buttons">
+        <a href="#" id="help-button" title="Help"><span class="mdi mdi-help-circle-outline"></span></a>
         <!-- <a href="#"><span class="mdi mdi-share-variant"></span></a> -->
-        <a href="https://github.com/Dullage/workfl.ws"><span class="mdi mdi-github-circle"></span></a>
+        <a href="https://github.com/Dullage/workfl.ws" title="GitHub"><span class="mdi mdi-github-circle"></span></a>
       </div>
     </div>
 
     <div class="gutter"></div>
 
     <!-- Right Panel -->
-    <div id="flow" class="border">
+    <div id="right-panel" class="border">
       <span id="loading-spinner" class="mdi mdi-loading mdi-spin" style="display: none"></span>
-      <div id="flow-svg"></div>
+      <div id="right-panel-buttons" class="buttons">
+        <a href="#" id="direction-button" title="Toggle Direction"><span class="mdi mdi-arrow-down-bold-circle-outline"></span></a>
+      </div>
+      <div id="mermaid" style="display: none">{% include "default-workflow.mermaid" %}</div>
     </div>
 
   </div>

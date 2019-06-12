@@ -11,9 +11,7 @@ The editor uses [workfl](https://github.com/Dullage/workfl) to convert the text 
 ## To Do
 
 * Add diagrams to help modal.
-* Allow diagram direction to be set.
 * Scrollbar styling (for long input). This is done on the help modal using [simplebar](https://github.com/Grsmto/simplebar) but this is incompatible with textarea.
-* Handle large workflows (scrolling / panning?).
 * Saving. Can the markup be stored in the URL similar to [itty.bitty.site](http://link.dullage.com/21a98)?
 * workfl allows for node and connection descriptions. A mermaid callback may be able show these descriptions in a popup.
 * Syntax highlighting.
