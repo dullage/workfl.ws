@@ -46,6 +46,9 @@
   <!-- Alpha Label -->
   <div id="alpha-label">ALPHA</div>
 
+  <!-- Coverall -->
+  <div id="coverall" style="display: none"></div>
+
   <!-- Help Modal -->
   <div id="help-modal" {% if not show_help %}style="display: none"{% endif %}>
     <div id="help-modal-content" class="border" data-simplebar>
@@ -77,7 +80,9 @@
     <div id="right-panel" class="border">
       <span id="loading-spinner" class="mdi mdi-loading mdi-spin" style="display: none"></span>
       <div id="right-panel-buttons" class="buttons">
-        <a href="#" id="direction-button" title="Toggle Direction"><span class="mdi mdi-arrow-down-bold-circle-outline"></span></a>
+        <a href="#" id="direction-button" title="Toggle Workflow Direction"><span class="mdi mdi-arrow-down-bold-circle-outline"></span></a>
+        <a href="#" id="fullscreen-button" title="Fullscreen"><span class="mdi mdi-fullscreen"></span></a>
+        <a href="#" id="edit-button" title="Edit" style="display: none;"><span class="mdi mdi-pencil"></span></a>
       </div>
       <div id="mermaid" style="display: none">{% include "default-workflow.mermaid" %}</div>
     </div>

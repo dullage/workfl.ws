@@ -11,11 +11,15 @@ $(document).ready(function () {
     var $helpButton = $("#help-button");
     var $helpModal = $("#help-modal");
     var $directionButton = $("#direction-button");
+    var $fullscreenButton = $("#fullscreen-button");
+    var $editButton = $("#edit-button");
 
     $input.on("change keyup paste", inputChangeCheck);
     $helpButton.click(toggleHelpModal);
     $helpModal.click(toggleHelpModal);
     $directionButton.click(toggleDirection);
+    $fullscreenButton.click(toggleFullscreen);
+    $editButton.click(toggleFullscreen);
     $(window).resize(windowResize);
 
     mermaid.mermaidAPI.initialize({
@@ -44,14 +48,14 @@ var inputChangeCheck = (function () {
 
 function windowResize() {
     clearTimeout(workflWs.resizeTimer);
-    workflWs.resizeTimer = setTimeout(fitSvg, 1000);
+    workflWs.resizeTimer = setTimeout(renderMermaid, 600);
 };
 
 function onInputChange() {
     var $svg = $("svg");
     var $loadingSpinner = $("#loading-spinner");
 
-    $svg.remove();
+    $svg.hide();
     $loadingSpinner.show();
 
     clearTimeout(workflWs.typingTimer);
@@ -72,8 +76,12 @@ function renderMermaid() {
     var $mermaid = $("#mermaid");
     var $loadingSpinner = $("#loading-spinner");
     var $rightPanel = $("#right-panel");
+    var $svg = $("svg");
     var uniqueId = "render" + (Math.floor(Math.random() * 10000)).toString();
     var mermaidMl = $mermaid.text();
+
+    // Remove the existing SVG
+    $svg.remove();
 
     // Function to insert and display the returned SVG
     var insertSvg = function (svg) {
@@ -150,4 +158,30 @@ function toggleDirection() {
 
     // TODO: Do this locally rather than requesting from the server.
     requestMermaid();
+};
+
+function toggleFullscreen() {
+    var $body = $("body");
+    var $coverall = $("#coverall");
+    var $leftPanel = $("#left-panel");
+    var $gutter = $(".gutter");
+    var $rightPanel = $("#right-panel");
+    var $directionButton = $("#direction-button");
+    var $fullscreenButton = $("#fullscreen-button");
+    var $editButton = $("#edit-button");
+    var $h1 = $("h1")
+
+    $coverall.fadeIn(200, function() {
+        $leftPanel.toggle();
+        $gutter.toggle();
+        $rightPanel.toggleClass("fullscreen");
+        $directionButton.toggle();
+        $fullscreenButton.toggle();
+        $editButton.toggle();
+        $h1.toggleClass("fullscreen");
+
+        renderMermaid();
+        
+        $coverall.fadeOut(200);
+    });
 };
