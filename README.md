@@ -10,8 +10,8 @@ The editor uses [workfl](https://github.com/Dullage/workfl) to convert the text 
 
 ## To Do
 
+* PNG export.
 * Add diagrams to help modal.
 * Scrollbar styling (for long input). This is done on the help modal using [simplebar](https://github.com/Grsmto/simplebar) but this is incompatible with textarea.
-* Saving. Can the markup be stored in the URL similar to [itty.bitty.site](http://link.dullage.com/21a98)?
-* workfl allows for node and connection descriptions. A mermaid callback may be able show these descriptions in a popup.
+* workfl allows for node and connection descriptions. Mermaid supports tooltips so may be used to display these connection descriptions?
 * Syntax highlighting.
