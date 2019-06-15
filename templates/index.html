@@ -4,55 +4,47 @@
 
 <head>
 
-  <!-- favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
-  <link rel="manifest" href="/static/site.webmanifest">
-  <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#028cc3">
-  <link rel="shortcut icon" href="/static/favicon.ico">
-  <meta name="msapplication-TileColor" content="#2d89ef">
-  <meta name="msapplication-config" content="/static/browserconfig.xml">
-  <meta name="theme-color" content="#ffffff">
+  <!-- Standard Headers -->
+  {% include "headers.html" %}
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}"/>
-
-  <!-- https://fonts.google.com/ -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:100&display=swap"/>
-
-  <!-- https://materialdesignicons.com/ -->
-  <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css"/>
-
-  <!-- https://github.com/Grsmto/simplebar -->
-  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
-  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
-
-  <!-- https://mermaidjs.github.io/ -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
-  <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-  <script src="{{ url_for('static', filename='javascript.js') }}"></script>
-
-  <!-- https://github.com/ariutta/svg-pan-zoom -->
-  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.0/dist/svg-pan-zoom.min.js"></script>
-
+  <!-- Custom Headers -->
   {% include "custom-headers.html" ignore missing %}
 
 </head>
 
 <body>
 
-  <!-- Alpha Label -->
-  <div id="alpha-label">ALPHA</div>
-
   <!-- Coverall -->
-  <div id="coverall" style="display: none"></div>
+  <div id="coverall"></div>
 
   <!-- Help Modal -->
-  <div id="help-modal" {% if not show_help %}style="display: none"{% endif %}>
-    <div id="help-modal-content" class="border" data-simplebar>
+  <div id="help-modal" class="modal" style="display: none">
+    <div id="help-modal-content" class="modal-content border" data-simplebar>
       {% include "help.html" %}
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div id="share-modal" class="modal" style="display: none">
+    <div id="share-modal-content" class="modal-content border">
+
+      <h1>Share Workflow</h1>
+
+      <!-- URL & Copy Button -->
+      <div id="share-url-container">
+        <div id="share-url-copied" style="display: none">Copied <span class="mdi mdi-check"></span></div>
+        <input id="share-url" type="text" readonly></input>
+        <span id="share-url-copy-button" class="icon-button mdi mdi-content-copy" title="Copy"></span>
+      </div>
+
+      <!-- Long URL Warning -->
+      <p id="share-url-length-warning">Warning: Due to the large size of your workflow you may encounter
+        problems sharing / using this URL on some platforms.
+      </p>
+
+      <!-- Share Info -->
+      <p>The URL generated above contains your shared workflow. It is not stored on the server and
+        therefore cannot be recovered if the link is lost.</p>
     </div>
   </div>
 
@@ -62,15 +54,18 @@
   </div>
 
   <div id="ui">
-  
+
     <!-- Left Panel -->
     <div id="left-panel" class="border">
-      <textarea id="input">{% include "default-workflow.workfl" %}</textarea>
 
+      <!-- Main Input Box -->
+      <textarea id="input">{{ workfl }}</textarea>
+
+      <!-- Left Panel Buttons -->
       <div id="left-panel-buttons" class="buttons">
-        <a href="#" id="help-button" title="Help"><span class="mdi mdi-help-circle-outline"></span></a>
-        <!-- <a href="#"><span class="mdi mdi-share-variant"></span></a> -->
-        <a href="https://github.com/Dullage/workfl.ws" title="GitHub"><span class="mdi mdi-github-circle"></span></a>
+        <span id="help-button" class="icon-button mdi mdi-help-circle-outline" title="Help"></span>
+        <a href="https://github.com/Dullage/workfl.ws" target="_blank" title="GitHub"><span
+            class="icon-button mdi mdi-github-circle"></span></a>
       </div>
     </div>
 
@@ -78,17 +73,23 @@
 
     <!-- Right Panel -->
     <div id="right-panel" class="border">
+  
+      <!-- Loading Spinner -->
       <span id="loading-spinner" class="mdi mdi-loading mdi-spin" style="display: none"></span>
+
+      <!-- Right Panel Buttons -->
       <div id="right-panel-buttons" class="buttons">
-        <a href="#" id="direction-button" title="Toggle Workflow Direction"><span class="mdi mdi-arrow-down-bold-circle-outline"></span></a>
-        <a href="#" id="fullscreen-button" title="Fullscreen"><span class="mdi mdi-fullscreen"></span></a>
-        <a href="#" id="edit-button" title="Edit" style="display: none;"><span class="mdi mdi-pencil"></span></a>
+        <span id="share-button" class="icon-button mdi mdi-share-variant" title="Share"></span>
+        <span id="direction-button" class="icon-button mdi mdi-arrow-down-bold-circle-outline"
+          title="Toggle Workflow Direction"></span>
+        <span id="fullscreen-button" class="icon-button mdi mdi-fullscreen" title="Fullscreen"></span>
+        <span id="edit-button" class="icon-button mdi mdi-pencil" title="Edit" style="display: none;"></span>
       </div>
-      <div id="mermaid" style="display: none">{% include "default-workflow.mermaid" %}</div>
+
+      <!-- Hidden Mermaid Markup -->
+      <div id="mermaid" style="display: none">{{ mermaid }}</div>
     </div>
-
   </div>
-
 </body>
 
 </html>

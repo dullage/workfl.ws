@@ -1,11 +1,13 @@
 * {
     font-family: 'Source Sans Pro', sans-serif;
     margin: 0;
-    padding: 0; 
+    padding: 0;
     box-sizing: border-box;
     color: #222222;
 }
 
+
+/* Main Elements */
 html, body {
     height: 100%;
 }
@@ -14,19 +16,6 @@ body {
     display: flex;
     flex-direction: column;
     padding: 10px 20px 20px 20px;
-}
-
-#alpha-label {
-    position: fixed;
-    top: 10px;
-    right: 0;
-    font-size: 16px;
-    padding: 5px 10px;
-    background-color: #028CC3;
-    color: white;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    z-index: 1;
 }
 
 #coverall {
@@ -39,11 +28,15 @@ body {
     z-index: 99;
 }
 
+
+/* Text */
 p {
-    margin: 0 0 1em 0;
+    margin: 1em 0;
 }
 
-#help-modal {
+
+/* Modals */
+.modal {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -57,19 +50,27 @@ p {
     justify-content: center;
     padding: 20px;
 }
-  
-#help-modal-content {
+
+.modal-content {
     background-color: white;
     padding: 20px 40px;
+}
+.modal-content.border {
+    padding: 20px 30px;
+}
+.modal-content h1 {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 100;
+    font-size: 40px;
+    line-height: 1.1em;
+}
+
+
+/* Help Modal */
+#help-modal-content {
     max-width: 1024px;
     max-height: 90%;
     flex: 1 1 auto;
-}
-#help-modal-content.border {
-    padding: 20px 30px;
-}
-#help-modal-content h1 {
-    font-size: 50px;    
 }
 
 .workfl {
@@ -77,11 +78,54 @@ p {
     margin: 0 0 1em 0;
 }
 
+
+/* Share Modal */
+#share-modal-content {
+    width: 450px;
+    height: auto;
+}
+
+#share-url-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1em 0;
+    position: relative;
+}
+
+#share-url-copy-button {
+    margin: 0 0 0 10px;
+}
+
+#share-url-copied {
+    position: absolute;
+    top: -18px;
+    right: 28px;
+}
+#share-url-copied, #share-url-copied span {
+    font-size: 12px;
+    color: #119511;
+}
+
+#share-url {
+    width: 100%;
+    padding: 4px;
+}
+#share-url:focus {
+    outline: none;
+}
+
+#share-url-length-warning {
+    color: red;
+}
+
+
+/* Header */
 #header {
     flex: 0 1 auto;
 }
 
-h1 {
+#header h1 {
     font-family: 'Work Sans', sans-serif;
     font-weight: 100;
     font-size: 80px;
@@ -90,7 +134,7 @@ h1 {
 @keyframes blink {
     50% {opacity: 0;}
 }
-.cursor {
+#header .cursor {
     font-family: 'Work Sans', sans-serif;
     font-weight: 100;
     animation-name: blink;
@@ -99,15 +143,19 @@ h1 {
     animation-timing-function: step-start;
 }
 
-h1.fullscreen {
+#header h1.fullscreen {
     font-size: 50px;
 }
 
+
+/* Standard Border */
 .border {
     border: 1px solid #A9A9A9;
     border-radius: 6px;
 }
 
+
+/* Outer UI Elements */
 #ui {
     flex: 1 1 auto;
     display: flex;
@@ -119,47 +167,6 @@ h1.fullscreen {
     display: flex;
     flex-direction: column;
     position: relative;
-}
-
-#input {
-    flex: 1 1 auto;
-    resize: none;
-    font-size: 16px;
-    line-height: 1.5em;
-    border: none;
-    border-radius: 6px;
-    padding: 20px 20px 0 20px;
-}
-#input:focus {
-    outline: none;
-}
-
-.gutter {
-    flex: 0 0 20px;
-}
-
-.buttons {
-    padding: 6px 10px;
-    text-align: right;
-}
-
-.buttons a {
-    font-size: 22px;
-}
-
-.buttons a span {
-    color: rgb(122, 122, 122);
-}
-
-#right-panel .buttons {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-
-#direction-button {
-    display: inline-block;
-    transition-duration: 0.6s;
 }
 
 #right-panel {
@@ -184,6 +191,51 @@ h1.fullscreen {
     color: #A9A9A9;
 }
 
+.gutter {
+    flex: 0 0 20px;
+}
+
+
+/* Input Box */
+#input {
+    flex: 1 1 auto;
+    resize: none;
+    font-size: 16px;
+    line-height: 1.5em;
+    border: none;
+    border-radius: 6px;
+    padding: 20px 20px 0 20px;
+}
+#input:focus {
+    outline: none;
+}
+
+/* Buttons */
+.buttons {
+    padding: 6px 10px;
+    text-align: right;
+    font-size: 22px;
+}
+
+.icon-button {
+    color: rgb(122, 122, 122);
+}
+.icon-button:hover {
+    color: rgb(54, 54, 54);
+}
+
+#right-panel .buttons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#direction-button {
+    display: inline-block;
+    transition-duration: 0.6s;
+}
+
+
 /* Nodes */
 #right-panel rect {
     fill: transparent !important;
@@ -194,11 +246,13 @@ h1.fullscreen {
     text-align: center;
 }
 
+
 /* Connections */
 #right-panel path {
     stroke: #A9A9A9 !important;
     stroke-width: 1px !important;
 }
+
 
 /* Connection Label */
 #right-panel .edgeLabel {

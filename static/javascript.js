@@ -1,32 +1,86 @@
 // Globals
 var workflWs = { direction: "TB" }
 
-function toggleHelpModal() {
-    var $helpModal = $("#help-modal");
-    $helpModal.toggle();
-};
-
 $(document).ready(function () {
-    var $input = $("#input");
+    // Selector Variables
+    var $coverall = $("#coverall");
     var $helpButton = $("#help-button");
     var $helpModal = $("#help-modal");
+    var $shareButton = $("#share-button");
+    var $shareModal = $("#share-modal");
+    var $shareUrl = $("#share-url");
+    var $shareUrlCopyButton = $("#share-url-copy-button");
+    var $shareUrlCopied = $("#share-url-copied");
+    var $shareUrlLengthWarning = $("#share-url-length-warning");
+    var $modals = $(".modal");
+    var $input = $("#input");
     var $directionButton = $("#direction-button");
     var $fullscreenButton = $("#fullscreen-button");
     var $editButton = $("#edit-button");
+    var urlParams = new URLSearchParams(window.location.search);
 
-    $input.on("change keyup paste", inputChangeCheck);
-    $helpButton.click(toggleHelpModal);
-    $helpModal.click(toggleHelpModal);
-    $directionButton.click(toggleDirection);
-    $fullscreenButton.click(toggleFullscreen);
-    $editButton.click(toggleFullscreen);
+    // Window Resizing
     $(window).resize(windowResize);
 
+    // Help Button
+    $helpButton.click(function () {
+        $helpModal.fadeIn(100);
+    });
+
+    // Share Button
+    $shareButton.click(function () {
+        $shareUrlLengthWarning.hide();
+        $shareUrl.val("Loading...");
+        $shareModal.fadeIn(100);
+        getShareUrl();
+    });
+
+    // Copy URL Button
+    $shareUrlCopyButton.click(function () {
+        $shareUrl.select();
+        document.execCommand("copy");
+        $shareUrlCopied.show();
+        $shareUrlCopied.fadeOut(2000);
+    });
+
+    // Modal Closing
+    $modals.mousedown(function (event) {
+        $modals.fadeOut(100);
+    })
+    $modals.children().mousedown(function (e) {
+        e.stopPropagation();
+    });
+
+    // Input Change
+    $input.on("change keyup paste", inputChangeCheck);
+
+    // Direction Button
+    $directionButton.click(toggleDirection);
+
+    // Fullscreen Button
+    $fullscreenButton.click(toggleFullscreen);
+
+    // Edit Button
+    $editButton.click(toggleFullscreen);
+
+    // Initialize Mermaid
     mermaid.mermaidAPI.initialize({
         startOnLoad: false
     });
-
     renderMermaid();  // Render the default workflow
+
+    // Show Help on Load?
+    if (urlParams.get("show-help") == "true") {
+        $helpModal.show();
+    };
+
+    // Go Fullscreen on Load?
+    if (urlParams.get("fullscreen") == "true") {
+        toggleFullscreen();  // This includes $coverall.fadeOut(200);
+    }
+    else {
+        $coverall.fadeOut(200);
+    };
 });
 
 var inputChangeCheck = (function () {
@@ -47,6 +101,7 @@ var inputChangeCheck = (function () {
 })();
 
 function windowResize() {
+    // Re-render the workflow after resizing the viewport
     clearTimeout(workflWs.resizeTimer);
     workflWs.resizeTimer = setTimeout(renderMermaid, 600);
 };
@@ -66,7 +121,7 @@ function requestMermaid() {
     var $input = $("#input");
     var $mermaid = $("#mermaid");
 
-    $.post("/render", { input: $input.val(), direction: workflWs.direction }, function (result) {
+    $.post("/render", { workfl: $input.val(), direction: workflWs.direction }, function (result) {
         $mermaid.text(result);
         renderMermaid();
     });
@@ -161,7 +216,6 @@ function toggleDirection() {
 };
 
 function toggleFullscreen() {
-    var $body = $("body");
     var $coverall = $("#coverall");
     var $leftPanel = $("#left-panel");
     var $gutter = $(".gutter");
@@ -171,7 +225,7 @@ function toggleFullscreen() {
     var $editButton = $("#edit-button");
     var $h1 = $("h1")
 
-    $coverall.fadeIn(200, function() {
+    $coverall.fadeIn(200, function () {
         $leftPanel.toggle();
         $gutter.toggle();
         $rightPanel.toggleClass("fullscreen");
@@ -181,7 +235,20 @@ function toggleFullscreen() {
         $h1.toggleClass("fullscreen");
 
         renderMermaid();
-        
+
         $coverall.fadeOut(200);
     });
+};
+
+function getShareUrl() {
+    var $input = $("#input");
+    var $shareUrl = $("#share-url")
+    var $shareUrlLengthWarning = $("#share-url-length-warning");
+
+    $.post("/share", { workfl: $input.val() }, function (result) {
+        $shareUrl.val(result.url);
+        if (result.len > 2000) {
+            $shareUrlLengthWarning.fadeIn(600);
+        }
+    }, "json");
 };

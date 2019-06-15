@@ -3,21 +3,21 @@
 <p>workfl.ws converts text (workfl / <strong>Workf</strong>low Markup <strong>L</strong>anguage) into a 
   workflow diagram. workfl was designed to be quick to write and easy to read.</p>
 
-<p>Each line represents a node in the flow. Nodes are then connected to each other as long as there are no 
+<p>Each line represents a node in the workflow. Nodes are then connected to each other as long as there are no 
   blank lines between:</p>
 
 <pre class="workfl">Node 1
 Node 2
 </pre>
 
-<p>You can add a label to the connection between 2 nodes using a line starting with a space or tab:</p>
+<p>You can add a label to the connection between 2 nodes using a line starting with spaces or tabs:</p>
 
 <pre class="workfl">Node 1
   Connection Label
 Node 2
 </pre>
 
-<p>You can declare as many flows as needed just as long as they are separated by one or more blank lines:</p>
+<p>You can declare as many workflows as needed just as long as they are separated by one or more blank lines:</p>
 
 <pre class="workfl">Node 1
 Node 2
@@ -26,7 +26,7 @@ Node 3
 Node 4
 </pre>
 
-<p>And you can connect flows together by re-using node names (non case-sensitive):</p>
+<p>And you can connect workflows together by re-using node names (non case-sensitive):</p>
 
 <pre class="workfl">Node 1
 Node 2
@@ -51,7 +51,7 @@ Node 2 || n2
   description goes between the pipes e.g. "Label | Description | Id"
 </p>
 
-<p>If you have declared an id for a node you will need to use that id if referencing it in other flows:</p>
+<p>If you have declared an id for a node you will need to use that id if referencing it in other workflows:</p>
 
 <pre class="workfl">Node 1 || n1
 Node 2
@@ -60,7 +60,7 @@ n1
 Node 3
 </pre>
 
-<p>You can add comments using the hash symbol:</p>
+<p>You can add comments using the hash symbol, these will not be visible in the workflow:</p>
 
 <pre class="workfl">Node 1
 # Comments that span an entire line do not break a flow.
