@@ -107,7 +107,7 @@ function windowResize() {
 };
 
 function onInputChange() {
-    var $svg = $("svg");
+    var $svg = $("#right-panel svg");
     var $loadingSpinner = $("#loading-spinner");
 
     $svg.hide();
@@ -131,7 +131,7 @@ function renderMermaid() {
     var $mermaid = $("#mermaid");
     var $loadingSpinner = $("#loading-spinner");
     var $rightPanel = $("#right-panel");
-    var $svg = $("svg");
+    var $svg = $("#right-panel svg");
     var uniqueId = "render" + (Math.floor(Math.random() * 10000)).toString();
     var mermaidMl = $mermaid.text();
 
@@ -154,7 +154,7 @@ function renderMermaid() {
 function fitSvg() {
     var svgWidth, svgHeight, rightPanelWidth, rightPanelHeight;
     var $rightPanel = $("#right-panel");
-    var $svg = $("svg");
+    var $svg = $("#right-panel svg");
 
     // Get the full size of the SVG before hiding it.
     svgWidth = $svg.width();
@@ -197,7 +197,7 @@ function fitSvg() {
 }
 
 function toggleDirection() {
-    var $svg = $("svg");
+    var $svg = $("#right-panel svg");
     var $directionButton = $("#direction-button");
 
     $svg.remove();
