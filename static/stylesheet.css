@@ -214,11 +214,11 @@ p {
 .buttons {
     padding: 6px 10px;
     text-align: right;
-    font-size: 22px;
 }
 
 .icon-button {
     color: rgb(122, 122, 122);
+    font-size: 22px;
 }
 .icon-button:hover {
     color: rgb(54, 54, 54);
