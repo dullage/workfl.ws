@@ -1,5 +1,5 @@
 // Globals
-var workflWs = { direction: "TB" }
+var workflWs = { direction: "TB", panZoom: null }
 
 $(document).ready(function () {
     // Selector Variables
@@ -155,6 +155,8 @@ function fitSvg() {
     var svgWidth, svgHeight, rightPanelWidth, rightPanelHeight;
     var $rightPanel = $("#right-panel");
     var $svg = $("#right-panel svg");
+    var $zoomInButton = $("#zoom-in-button");
+    var $zoomOutButton = $("#zoom-out-button");
 
     // Get the full size of the SVG before hiding it.
     svgWidth = $svg.width();
@@ -173,7 +175,15 @@ function fitSvg() {
 
     // Show the SVG and enable panning and zooming.
     $svg.show();
-    panZoom = svgPanZoom($svg[0]);
+    workflWs.panZoom = svgPanZoom($svg[0]);
+
+    // Bind Zoom Buttons
+    $zoomInButton.click(function() {
+        workflWs.panZoom.zoomIn();
+    })
+    $zoomOutButton.click(function() {
+        workflWs.panZoom.zoomOut();
+    })
 
     // If the SVG is smaller than the panel, zoom out.
     if ((svgWidth < rightPanelWidth) & (svgHeight < rightPanelHeight)) {
@@ -181,19 +191,19 @@ function fitSvg() {
         heightDecimal = 1 / (rightPanelHeight / svgHeight);
 
         if (widthDecimal > heightDecimal) {
-            panZoom.setMinZoom(widthDecimal);
-            panZoom.zoom(widthDecimal);
+            workflWs.panZoom.setMinZoom(widthDecimal);
+            workflWs.panZoom.zoom(widthDecimal);
         }
         else {
-            panZoom.setMinZoom(heightDecimal);
-            panZoom.zoom(heightDecimal);
+            workflWs.panZoom.setMinZoom(heightDecimal);
+            workflWs.panZoom.zoom(heightDecimal);
         }
     }
     else {
-        panZoom.setMinZoom(1);
+        workflWs.panZoom.setMinZoom(1);
     }
 
-    panZoom.setZoomScaleSensitivity(0.4);
+    workflWs.panZoom.setZoomScaleSensitivity(0.4);
 }
 
 function toggleDirection() {
